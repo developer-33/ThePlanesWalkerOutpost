@@ -67,15 +67,46 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-          {["Home", "Cards", "Decks", "News", "Profile", "Sets"].map((item) => (
-            <a
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300 font-semibold"
-            >
-              {item}
-            </a>
-          ))}
+        <Link
+          to="/">
+          <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+            Home
+          </span>
+        </Link>
+          <Link 
+            to="/cards">
+            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+              Cards
+            </span>
+          </Link>
+          <Link 
+            to="/decks">
+            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+              Decks
+            </span>
+          </Link>
+          <Link 
+            to="/decks/:id">
+            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+              Create Deck
+            </span>
+          </Link>
+          <Link 
+            to="/profile">
+            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+              Profile
+            </span>
+          </Link>
+          <Link 
+            to="/news">
+            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
+              news
+            </span> 
+          </Link>
+       
+          
+
+       
           
           {/* Search Box */}
           <form
