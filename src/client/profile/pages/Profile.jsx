@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProfileHeader from "../components/ProfileHeader";
 import ProfileStats from "../components/ProfileStats";
 import ProfileFeed from "../components/ProfileFeed";
-import DeckShowcase from "../components/DeckShowcase";
+
 import { Link } from "react-router-dom";
 import ScrollToTopButton from "../../utils/ScrollToTopButton";
 
@@ -35,7 +35,7 @@ const Profile = () => {
         {/* Stats and Deck Showcase */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ProfileStats />
-          <DeckShowcase />
+     
           <div className="hidden lg:block">
             {/* Optional Slot for Future Widgets */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">

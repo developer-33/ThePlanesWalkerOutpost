@@ -1,8 +1,8 @@
 import React from "react";
 import FeaturedCards from "../utils/FeaturedCards";
-import LatestDecks from "../componets/latestDecks";
+import LatestDecks from "../decks/latestDecks";
 
-import SearchResults from "../utils/SearchResults";
+import SearchResults from "../lib/SearchResults";
 import { useState } from "react";
 // import CommunitySpotlight from "../components/CommunitySpotlight";
 // import TournamentSection from "../components/TournamentSection";

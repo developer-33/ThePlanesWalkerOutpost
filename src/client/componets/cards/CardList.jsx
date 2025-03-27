@@ -11,8 +11,10 @@ function CardList() {
         if (!response.ok) {
           throw new Error('Failed to fetch cards');
         }
+        // console.log(response);
         return response.json();
       })
+  
       .then((data) => {
         setCards(data);
         setLoading(false);

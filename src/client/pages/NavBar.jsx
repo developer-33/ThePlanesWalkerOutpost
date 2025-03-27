@@ -85,12 +85,7 @@ const Navbar = () => {
               Decks
             </span>
           </Link>
-          <Link 
-            to="/decks/:id">
-            <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
-              Create Deck
-            </span>
-          </Link>
+      
           <Link 
             to="/profile">
             <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">

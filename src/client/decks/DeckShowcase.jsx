@@ -11,8 +11,13 @@ const Decks = () => {
       const res = await fetch(
         "https://api.scryfall.com/cards/search?q=type:legendary"
       );
+  
+      if (!res.ok) {
+        throw new Error(`API Error: ${res.status}`);
+      }
+  
       const data = await res.json();
-      console.log("API Response:", data); // Check what you get back
+      console.log("API Response:", data);
   
       if (data.data && data.data.length > 0) {
         setDecks(data.data);
@@ -25,6 +30,7 @@ const Decks = () => {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     fetchDecks();

@@ -11,6 +11,7 @@ const Logo = () => {
         />
         <h1 className="text-3xl text-white font-extrabold tracking-wide"></h1>
       </div>
+      <canvas id="canvas"></canvas>
     </div>
   )
 }

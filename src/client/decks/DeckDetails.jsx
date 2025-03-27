@@ -12,7 +12,8 @@ const DeckDetails = () => {
   useEffect(() => {
     const fetchDeck = async () => {
       try {
-        const res = await fetch(`https://api.scryfall.com/decks/${id}`);
+        const res = await fetch(`https://api.scryfall.com/cards/${id}`);
+
         if (!res.ok) {
           throw new Error("Failed to fetch deck details");
         }
@@ -66,6 +67,23 @@ const DeckDetails = () => {
           </div>
         ))}
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {Array.isArray(deck.data) &&
+    deck.data.map((card) => (
+      <div
+        key={card.id}
+        className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-lg"
+      >
+        <img
+          src={card.image_uris?.normal || card.image_uris?.small}
+          alt={card.name}
+          className="w-full h-56 object-cover rounded-lg"
+        />
+        <h3 className="text-xl font-bold mt-2">{card.name}</h3>
+        <p className="text-gray-500">{card.type_line}</p>
+      </div>
+    ))}
+</div>
     </div>
   );
 };
