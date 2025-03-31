@@ -85,6 +85,13 @@ const Home = () => {
         </h2>
         {/* <CommunitySpotlight /> */}
       </section>
+    
+      <section className="container mx-auto py-12 px-4">
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
+          Search Results
+        </h2>        
+        <SearchResults /> 
+      </section>
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white text-center py-6">

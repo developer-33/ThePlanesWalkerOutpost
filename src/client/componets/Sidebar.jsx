@@ -90,6 +90,8 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
             { name: "Cards", path: "/cards" },
             { name: "Decks", path: "/decks" },
             { name: "Profile", path: "/profile" },
+            { name: "login", path: "/login" },
+
           ].map((item) => (
             <li key={item.name}>
               <Link

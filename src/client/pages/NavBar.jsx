@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import useTheme from "../componets/hooks/Dark";
-import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   const [darkMode, toggleTheme] = useTheme();

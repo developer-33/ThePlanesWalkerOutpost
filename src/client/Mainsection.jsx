@@ -8,6 +8,7 @@ import Profile from './profile/pages/Profile'
 import SearchResults from './lib/SearchResults'
 import Cards from './componets/cards/Cards'
 import DeckDetails from './decks/DeckDetails'
+import Login from './auth/Login'
 import Sets from './utils/Sets'
 
 const Mainsection = () => {
@@ -24,6 +25,7 @@ const Mainsection = () => {
         {/* Profile */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/login" element={<Login />} />
    
    
         <Route path="/sets" element={<Sets />} />
