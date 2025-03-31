@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const ArticleList = ({ articles }) => {
   return (
     <div className="p-4">
@@ -28,6 +28,12 @@ const ArticleList = ({ articles }) => {
           </div>
         ))}
       </div>
+      {articles.length === 0 && (
+        <p className="text-center text-gray-500 mt-4">No articles found.</p>
+      )}
+
+        
+
     </div>
   );
 };

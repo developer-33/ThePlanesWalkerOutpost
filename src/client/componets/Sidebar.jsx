@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
-import useTheme from "../componets/hooks/Dark"; // Fixed the typo
+import useTheme from "./hooks/Dark"; // ✅ Fixed typo in import path
 
 import Logo from "./Logo";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ isMenuOpen, toggleMenu }) => {
   const [darkMode, toggleTheme] = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
+ 
 
   // ✅ Apply dark mode to the body dynamically
   useEffect(() => {
@@ -42,27 +44,24 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
       {/* ✅ Sidebar Overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-50"
+          className="fixed inset-0 bg-black bg-opacity-75 z-50"
           onClick={toggleMenu}
         />
       )}
 
       {/* ✅ Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-redMana dark:bg-gray-800 text-black dark:text-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 left-0 w-60 h-full bg-gray-100 dark:bg-gray-800 text-black dark:text-white shadow-lg transform transition-transform duration-300
+         ease-in-out
+          overflow-y-auto z-50 ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
+   
         {/* ✅ Sidebar Header */}
-        <div className="p-4 border-b border-red-700 flex justify-between items-center">
+        <div className="p-4 border-b border-red-700 flex items-center justify-between">
           <Logo />
-          <button
-            onClick={toggleMenu}
-            className="text-black dark:text-white hover:text-red-500 transition"
-            aria-label="Close menu"
-          >
-            ✖
-          </button>
+         
         </div>
 
         {/* ✅ Search Bar */}
@@ -72,11 +71,12 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search cards..."
-            className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white p-3 pr-10 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            className="bg-gray-300 dark:bg-gray-800 text-black dark:text-white p-3 pr-10 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           />
           <button
             type="submit"
-            className="absolute right-4 text-black dark:text-white hover:text-redMana transition"
+            className="absolute right-4 text-black dark:text-white hover:text-red-500 transition"
+            aria-label="Search"
           >
             🔍
           </button>
@@ -84,11 +84,12 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
 
         {/* ✅ Navigation Links */}
         <ul className="flex flex-col p-4 space-y-6">
-          {[
+          {[ 
             { name: "Home", path: "/" },
             { name: "News", path: "/news" },
             { name: "Cards", path: "/cards" },
             { name: "Decks", path: "/decks" },
+            { name: "Profile", path: "/profile" },
           ].map((item) => (
             <li key={item.name}>
               <Link
@@ -106,22 +107,29 @@ const Sidebar = ({ isMenuOpen, toggleMenu }) => {
           ))}
         </ul>
 
+        {/* ✅ Back Button */}
+       
+
         {/* ✅ Theme Switcher */}
         <div className="absolute bottom-0 left-0 w-full p-4 border-t border-red-700">
+        <div className="flex justify-center items-center p-4">
+  <label className="relative inline-flex items-center cursor-pointer">
+    <input type="checkbox" checked={darkMode} onChange={toggleTheme} className="sr-only peer" />
+    <div className="w-14 h-7 bg-gray-300 dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-red-500 rounded-full peer dark:peer-focus:ring-gray-300 transition-all after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-7 peer-checked:bg-red-500"></div>
+    <span className="ml-3 text-sm font-medium">{darkMode ? "Dark Mode" : "Light Mode"}</span>
+  </label>
+</div>
+
+          {/* BackButtom   */}
+          <div className="p-4">
           <button
-            onClick={toggleTheme}
-            className="w-full flex items-center justify-center bg-gray-700 text-white p-3 rounded-lg hover:bg-gray-600 transition"
+            onClick={(toggleMenu)}
+            className="w-full bg-red-500 text-white rounded-lg p-2 hover:bg-red-600 transition"
+            aria-label="Back"
           >
-            {darkMode ? (
-              <>
-                🌙 <span className="ml-2">Dark Mode</span>
-              </>
-            ) : (
-              <>
-                ☀️ <span className="ml-2">Light Mode</span>
-              </>
-            )}
+            Back
           </button>
+        </div>
         </div>
       </div>
     </>

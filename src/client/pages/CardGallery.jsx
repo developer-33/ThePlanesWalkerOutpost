@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Modal from "react-modal";
+import Modal from "react-modal"; // Assuming you have a Modal component
 
 const CardGallery = () => {
   const [cards, setCards] = useState([]);
@@ -10,9 +10,7 @@ const CardGallery = () => {
   const [rarity, setRarity] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
 
-  useEffect(() => {
-    fetchCards();
-  }, []);
+
 
   const fetchCards = async () => {
     try {
@@ -36,16 +34,22 @@ const CardGallery = () => {
       console.error("Error fetching cards:", error);
     }
   };
+  
+  useEffect(() => {
+    fetchCards();
+  }, []);
 
   return (
-    <div className="p-6 bg-gray-900 min-h-screen text-white">
+    <div className="p-6 bg- min-h-screen bg-gray-100 dark:bg-gray-900 text-white">
       <h1 className="text-3xl font-bold text-center mb-6 text-yellow-500">
+        
         Magic: The Gathering Card Gallery
       </h1>
       <div className="flex flex-wrap gap-3 justify-center mb-6">
+    
         <input
           type="text"
-          className="p-3 border border-yellow-500 rounded-lg bg-gray-800 text-white"
+          className="p-3 border border-yellow-500 rounded-lg bg-gray-100 dark:bg-gray-900 text-white dark:text-gray-800"
           placeholder="Search for a card..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -65,7 +69,7 @@ const CardGallery = () => {
         </select>
 
         <select
-          className="p-3 border border-yellow-500 rounded-lg bg-gray-800 text-white"
+          className="p-3 border border-burntRedManna rounded-lg bg-gray-800 text-white"
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
@@ -75,6 +79,11 @@ const CardGallery = () => {
           <option value="sorcery">Sorcery</option>
           <option value="artifact">Artifact</option>
           <option value="enchantment">Enchantment</option>
+          <option value="land">Land</option>
+          <option value="battle">Battle</option>
+          <option value="token">Token</option>
+          <option value="saga">Saga</option>
+          <option value="planar">Planar</option>
           <option value="planeswalker">Planeswalker</option>
         </select>
 

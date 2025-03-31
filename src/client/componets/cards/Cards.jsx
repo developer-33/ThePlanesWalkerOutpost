@@ -1,46 +1,34 @@
 import React, { useState, useEffect } from "react";
-import searchCards from "../../utils/searchCards";
 import CardModal from "./CardModel";
 import axios from "axios";
 
 const Cards = () => {
   const [cards, setCards] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [nextPage, setNextPage] = useState(null); // Track next page URL
   const [selectedCard, setSelectedCard] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchCards = async () => {
+  const fetchCards = async (url = "https://api.scryfall.com/cards") => {
     try {
-      const response = await axios.get("https://api.scryfall.com/cards");
-      setCards(response.data.data); // Scryfall returns an object with a "data" property
+      setLoading(true);
+      const response = await axios.get(url);
+      setCards(response.data.data);
+      setNextPage(response.data.next_page || null); // Store next page if available
     } catch (error) {
       console.error("Failed to fetch cards:", error);
       alert("Failed to fetch cards.");
+    } finally {
+      setLoading(false);
     }
   };
-  
+
   useEffect(() => {
-    fetchCards(currentPage);
-  }, [currentPage]);
-
-  // Open Modal
-  const openModal = (card) => {
-    setSelectedCard(card);
-  };
-
-  // Close Modal
-  const closeModal = () => {
-    setSelectedCard(null);
-  };
-
-  // Pagination Controls
-  const nextPage = () => setCurrentPage((prev) => prev + 1);
-  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+    fetchCards();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center text-blueMana
-       mb-6">
+      <h2 className="text-3xl font-bold text-center text-blueMana mb-6">
         Browse Magic Cards
       </h2>
 
@@ -53,7 +41,7 @@ const Cards = () => {
           <div
             key={card.id}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300"
-            onClick={() => openModal(card)}
+            onClick={() => setSelectedCard(card)}
           >
             <img
               src={card.image_uris?.normal || "/placeholder.jpg"}
@@ -75,28 +63,18 @@ const Cards = () => {
       {/* Pagination Controls */}
       <div className="flex justify-center mt-8 space-x-4">
         <button
-          onClick={prevPage}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 bg-gray-700 text-white rounded-lg ${
-            currentPage === 1
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-gray-600"
+          onClick={() => fetchCards(nextPage)}
+          disabled={!nextPage}
+          className={`px-4 py-2 bg-blueMana text-white rounded-lg ${
+            !nextPage ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-500"
           }`}
         >
-          Previous
-        </button>
-        <button
-          onClick={nextPage}
-          className="px-4 py-2 bg-blueMana text-white rounded-lg hover:bg-blue-500"
-        >
-          Next
+          Load More
         </button>
       </div>
 
       {/* Modal */}
-      {selectedCard && (
-        <CardModal card={selectedCard} closeModal={closeModal} />
-      )}
+      {selectedCard && <CardModal card={selectedCard} closeModal={() => setSelectedCard(null)} />}
     </div>
   );
 };

@@ -20,7 +20,11 @@ export default {
           pureRedMana: '#FF0000',
           greenMana: '#4B9B3F',
           limeGreenMana: '#85C241',
-
+          lightGreenMana: '#A8D8A0',
+          darkGreenMana: '#2B7A2D',
+          // Custom Colors
+          // Reds
+     
           deepGreenMana: '#2B7A2D',
           // Neutrals
           neutralGray: '#B0B0B0',

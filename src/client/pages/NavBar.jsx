@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import Logo from "./Logo";
+
 import useTheme from "../componets/hooks/Dark";
 import { Link } from "react-router-dom";
 
@@ -38,9 +38,9 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo and Site Title */}
         <div className="flex items-center space-x-3">
-          {/* <Logo /> */}
+       
           <h1 className="text-2xl font-bold text-redMana dark:text-white">
-            MTG Fan Page
+          THe PlanesWalker Outpost
           </h1>
         </div>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 items-center">
-        <Link
+        {/* <Link
           to="/">
           <span className="text-black dark:text-white hover:text-redMana dark:hover:text-blueMana transition-colors duration-300">
             Home
@@ -98,7 +98,7 @@ const Navbar = () => {
               news
             </span> 
           </Link>
-       
+        */}
           
 
        
@@ -137,7 +137,7 @@ const Navbar = () => {
           onClick={toggleMenu}
           className="md:hidden text-black dark:text-white focus:outline-none"
         >
-          {isMenuOpen ? "✖" : "☰"}
+          {isMenuOpen ? "✖" : ""}
         </button>
       </div>
 

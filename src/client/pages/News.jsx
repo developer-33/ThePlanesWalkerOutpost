@@ -5,7 +5,18 @@ const News = () => {
   return (
     <div className="text-gray-900 dark:text-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-green-700 via-yellow-700 to-orange-700 h-64 flex items-center">
+      <section className="relative bg-cover bg-center flex items-center justify-center">
+        <div className="absolute inset-0 opacity-50">
+          <img
+            src="../../src/assets/Magic4.png"
+            alt="Hero Background"
+            className="absolute inset-0 object-cover w-full h-full opacity-30"
+            // style={{ filter: "blur(8px)" }} // Add blur effect
+            loading="lazy"
+            referrerPolicy="no-referrer"  
+            // Use referrerPolicy to avoid CORS issues
+          />
+        </div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="container mx-auto px-4 text-center relative">
           <h1 className="text-4xl font-extrabold text-white">Latest News</h1>
@@ -52,3 +63,5 @@ const News = () => {
 };
 
 export default News;
+
+

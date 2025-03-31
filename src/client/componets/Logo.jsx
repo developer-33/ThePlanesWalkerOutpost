@@ -1,19 +1,22 @@
-import React from 'react'
+import React from "react";
+import magicLogo from "../../assets/Magic5.png"; // ✅ Corrected import
 
 const Logo = () => {
   return (
-    <div>
-          <div className="flex items-center space-x-3 mt-4 mb-8">
-        <img
-          src="https://via.placeholder.com/40"
-          alt="MTG Logo"
-          className="w-10 h-10 rounded-full"
-        />
-        <h1 className="text-3xl text-white font-extrabold tracking-wide"></h1>
-      </div>
-      <canvas id="canvas"></canvas>
+    <div className="flex flex-col items-center justify-center mt-4 mb-8">
+      <img
+        src={magicLogo}
+        alt="MTG Logo"
+        className="w-50 h-50 p-2  object-cover
+        rounded-full shadow-lg bg-white dark:bg-gray-800
+        dark:shadow-gray-700
+        border-4 border-red-500
+        hover:shadow-xl transition-shadow duration-300 
+      "
+      />
+  
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

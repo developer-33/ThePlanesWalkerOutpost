@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Model from "react-modal";
 
 const FeaturedCards = () => {
   const [cards, setCards] = useState([]);
@@ -30,22 +31,43 @@ const FeaturedCards = () => {
          text-black
          p-4
          rounded-lg shadow-md">
-         {/* <div>
-            <img src={card.image_uris?.normal} alt={card.name} className="w-full h-72 object-cover 
-              mb-4
-              rounded-lg
-              shadow-md
-              bg-red-800
-              rounded-t-lg" />
-          </div> */}
+          {/* Card Image */}
+
+
           
           <div className="p-4 space-y-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
   <div className="group">
     <img
       src={card.image_uris?.normal}
+      alt={card.name}
+      className="w-full h-72 object-cover rounded-t-lg shadow-md mb-4 group-hover:scale-105 transition-transform duration-300"
+    />
+    <img
+      src={card.image_uris?.art_crop}
       alt={`Image of ${card.name}`}
       className="w-full h-72 object-cover rounded-t-lg shadow-md mb-4"
     />
+  </div>
+  {/* Card Type */}
+  <p className="text-sm text-gray-500 dark:text-gray-400">{card.type_line}</p>
+
+  {/* Card Set Symbol */}
+  <img
+    src={card.set_icon?.icon_svg_uri}
+    alt={`${card.set_name} symbol`}
+    className="w-8 h-8 mb-2"
+  />
+  {/* Card Rarity */}
+  <p className="text-sm text-gray-500 dark:text-gray-400">{card.rarity}</p>
+
+  {/* Card Color Identity */}
+  <div className="flex space-x-2 mb-2">
+    {card.color_identity.map((color) => (
+      <span
+        key={color}
+        className={`w-4 h-4 rounded-full bg-${color}-500`}
+      ></span>
+    ))}
   </div>
 
   {/* Card Name */}

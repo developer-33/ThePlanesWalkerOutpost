@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 /* Mana Color Customization */
 .redMana {

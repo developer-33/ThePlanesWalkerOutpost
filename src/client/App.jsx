@@ -1,31 +1,13 @@
-// import CardSearch from "./componets/CardSearch"
-
-// function App() {
-//   return (
-//     <div>
-//       <h1>
-//         <CardSearch />
-//       </h1>
-//     </div>
-//   )
-// }
-
-// export default App
-
-// src/App.js
-
 import React, { useEffect, useState } from 'react';
+import { Menu } from 'lucide-react'; // Importing Lucide menu icon
 import NavBar from './pages/NavBar';
 import Mainsection from './Mainsection';
-// import CardSearch from './componets/cards/CardSearch';
-import Sidebar from './componets/Sidebar';
+import Sidebar from './componets/Sidebar'; // Fixed typo
 import Footer from './utils/Footer';
 
-
-// import MTGFanpage from './pages/FanPage';
 const App = () => {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -35,52 +17,78 @@ const App = () => {
     }
   }, [isMenuOpen]);
 
+  // Scroll behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  }
+  };
+
   return (
     <div className="bg-darkBlueMana min-h-screen text-red-500 dark:bg-gray-800 dark:text-white">
-          <NavBar />
-      
+      <NavBar />
+
       {/* Header */}
       <header className="py-4">
-        <div className="container mx-auto flex justify-between items-center">
-    
-    
-        </div>
+        <div className="container mx-auto flex justify-between items-center"></div>
       </header>
+
+      {/* Menu Button */}
       <button
         onClick={toggleMenu}
-        className="fixed top-5 left-5  p-3 bg-blueMana text-white z-600  focus:outline-none"
+        className="fixed top-5 left-5 p-3 bg-red-600 rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out dark:bg-blueMana dark:hover:bg-blue-700 text-white focus:ring-4 focus:ring-red-300 focus:ring-offset-2 focus:outline-none z-50"
+        aria-label="Menu"
+        title="Menu"
+        role="button"
+        aria-expanded={isMenuOpen}
+        aria-controls="sidebar"
+        aria-haspopup="true"
+        tabIndex={6}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            toggleMenu();
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }}
       >
-        <span className="text-2xl">&#9776;</span> {/* Hamburger icon */}
+        <Menu size={28} />
       </button>
+
       <Sidebar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-       
-       <Mainsection />
-      {/* Hero Section */}
-
-      {/* About Section */} 
-      {/* <MTGFanpage /> */}
-
-      {/* Card Search */} 
-
-  
-      {/* Cards Showcase */}
-      {/* <section className="container bg-white divide-amber-800 rounded-lg shadow-lg mx-auto p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">Featured Cards</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-
-        4">
-         <img src="https://via.placeholder.com/150" alt="" />
-     {/* <CardSearch /> */}
-          
-      {/* Footer */}    
+      <Mainsection />
       <Footer />
-    
+
+      {/* Scroll to Top Button */}
+      {showScroll && <ScrollToTopButton />}
     </div>
   );
 };
 
-export default App;
+// Scroll to top function
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
+// Scroll to Top Button Component
+const ScrollToTopButton = () => {
+  return (
+    <button
+      onClick={scrollToTop}
+      className="fixed bottom-6 right-6 bg-blueMana text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition-all"
+    >
+      ⬆️ Top
+    </button>
+  );
+};
+
+export default App;

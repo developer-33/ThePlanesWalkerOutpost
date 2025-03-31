@@ -53,8 +53,16 @@ const Sets = () => {
       <h2 className="text-3xl font-bold mb-6 text-center">Magic: The Gathering Sets</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sets.map((set) => (
+          // Each set card
+          // You can customize the styling as per your design
+
           <div
             key={set.id}
+            onClick={() => window.open(set.search_uri, "_blank")}
+            // Open set details in a new tab
+            className="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+            // Add hover effect
+            // You can customize the styling as per your design
             className="border p-4 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-lg"
           >
             <h3 className="text-xl font-bold">{set.name}</h3>
